@@ -1,6 +1,5 @@
-
-var w = 1280 - 80,
-    h = 800 - 180,
+var w = Math.max(document.documentElement.clientWidth * 0.8, window.innerWidth * 0.8 || 320),
+    h = Math.max(document.documentElement.clientHeight * 0.9, window.innerHeight * 0.9 || 420),
     x = d3.scale.linear().range([0, w]),
     y = d3.scale.linear().range([0, h]),
     color = d3.scale.category20c(),
@@ -76,12 +75,14 @@ d3.json("data/asl.json", function(data) {
         .text(function(d) { return d.name; })
         .style('font-size', 10);
     
-    cell.selectAll('text').call(wrap, 150);
+    
+    cell.selectAll('text').call(wrap, Math.min(130, w * 0.3));
+    
     cell.selectAll('text')
         .style("opacity", function(d) { 
             d.w = this.getBBox().width;
             d.h = this.getBBox().height;
-            if ( d.dx > d.w && d.dy > d.h ) {
+            if ( d.dx + 10 > d.w && d.dy > d.h ) {
                 return 1;
             } else {
                 return 0;
@@ -102,7 +103,7 @@ d3.json("data/asl.json", function(data) {
         .text(function(d) { return "(" + d.change + ")"; })
         .style('font-size', 10)
         .style("opacity", function(d) { 
-            if ( d.dx > d.w ) {
+            if ( d.dx > d.w && d.dy > d.h) {
                 return 1;
             } else {
                 return 0;
@@ -147,7 +148,16 @@ function zoom(d) {
         .attr("y", function(d) { 
             return ky * d.dy / 2; 
         })
-        .style("opacity", function(d) { return kx * d.dx > d.w ? 1 : 0; });
+        .style("opacity", function(d) { 
+            d.w = this.getBBox().width;
+            d.h = this.getBBox().height;
+            if ( kx * d.dx + 10 > d.w && ky * d.dy > d.h ) {
+                return 1;
+            } else {
+                return 0;
+            }
+            // return kx * d.dx + 10 > d.w ? 1 : 0; 
+        });
     
     t.selectAll("text.name")
         .attr("x", function(d) { return kx * d.dx / 2; })
@@ -166,7 +176,14 @@ function zoom(d) {
             return Number(name_text.attr('y')) + name_text[0][0].getBBox().height;
             // return ky * d.dy / 2 + 15; 
         })
-        .style("opacity", function(d) { return kx * d.dx > d.w ? 1 : 0; });
+        .style("opacity", function(d) { 
+            if ( kx * d.dx > d.w && ky * d.dy > d.h) {
+                return 1;
+            } else {
+                return 0;
+            }
+            // return kx * d.dx > d.w ? 1 : 0; 
+        });
     
     node = d;
     d3.event.stopPropagation();
