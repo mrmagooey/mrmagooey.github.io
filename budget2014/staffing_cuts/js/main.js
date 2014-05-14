@@ -1,5 +1,5 @@
-var w = Math.max(document.documentElement.clientWidth * 0.8, window.innerWidth * 0.8 || 320),
-    h = Math.max(document.documentElement.clientHeight * 0.9, window.innerHeight * 0.9 || 420),
+var w = Math.max(document.documentElement.clientWidth * 0.8, window.innerWidth * 0.8, 360),
+    h = Math.max(document.documentElement.clientHeight * 0.9, window.innerHeight * 0.9, 400),
     x = d3.scale.linear().range([0, w]),
     y = d3.scale.linear().range([0, h]),
     color = d3.scale.category20c(),
