@@ -61,8 +61,8 @@ d3.json("data/asl.json", function(data) {
             .on("click", function(d) { return zoom(node == d.parent ? root : d.parent); });
 
     cell.append("svg:rect")
-        .attr("width", function(d) { return d.dx - 1; })
-        .attr("height", function(d) { return d.dy - 1; })
+        .attr("width", function(d) { return d.dx; })
+        .attr("height", function(d) { return d.dy; })
         .style("fill", function(d) { return color(d.parent.name); });
 
     
@@ -138,8 +138,8 @@ function zoom(d) {
     
     // Modify width and height so that full svg box is used
     t.select("rect")
-        .attr("width", function(d) { return kx * d.dx - 1; })
-        .attr("height", function(d) { return ky * d.dy - 1; });
+        .attr("width", function(d) { return kx * d.dx ; })
+        .attr("height", function(d) { return ky * d.dy ; });
 
     // Move text within this new rectangle
     // Move both the text containers and the tspans
@@ -147,17 +147,17 @@ function zoom(d) {
         .attr("x", function(d) { return kx * d.dx / 2; })
         .attr("y", function(d) { 
             return ky * d.dy / 2; 
-        })
-        .style("opacity", function(d) { 
-            d.w = this.getBBox().width;
-            d.h = this.getBBox().height;
-            if ( kx * d.dx + 10 > d.w && ky * d.dy > d.h ) {
-                return 1;
-            } else {
-                return 0;
-            }
-            // return kx * d.dx + 10 > d.w ? 1 : 0; 
         });
+        // .style("opacity", function(d) { 
+        //     d.w = this.getBoundingClientRect().width;
+        //     d.h = this.getBoundingClientRect().height;
+        //     if ( kx * d.dx > d.w && ky * d.dy > d.h ) {
+        //         return 1;
+        //     } else {
+        //         return 0;
+        //     }
+        //     // return kx * d.dx + 10 > d.w ? 1 : 0; 
+        // });
     
     t.selectAll("text.name")
         .attr("x", function(d) { return kx * d.dx / 2; })
@@ -166,7 +166,15 @@ function zoom(d) {
             d.bb_y = this.getBBox().height;
             return ky * d.dy / 2; 
         })
-        .style("opacity", function(d) { return kx * d.dx > d.w ? 1 : 0; });
+        .style("opacity", function(d) { 
+            if ( kx * d.dx > d.w && ky * d.dy > d.h) {
+                return 1;
+            } else {
+                return 0;
+            }
+            
+            return kx * d.dx > d.w ? 1 : 0; 
+        });
         
     t.select("text.number")
         .attr("x", function(d) { return kx * d.dx / 2; })
