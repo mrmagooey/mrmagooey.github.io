@@ -61,8 +61,10 @@ d3.json("data/asl.json", function(data) {
             .on("click", function(d) { return zoom(node == d.parent ? root : d.parent); });
 
     cell.append("svg:rect")
-        .attr("width", function(d) { return d.dx; })
-        .attr("height", function(d) { return d.dy; })
+        .attr("width", function(d) { 
+            return d.dx <= 1 ? d.dx: d.dx - 1;
+        })
+        .attr("height", function(d) { return d.dy <= 1 ? d.dy: d.dy - 1; })
         .style("fill", function(d) { return color(d.parent.name); });
 
     
@@ -138,8 +140,8 @@ function zoom(d) {
     
     // Modify width and height so that full svg box is used
     t.select("rect")
-        .attr("width", function(d) { return kx * d.dx ; })
-        .attr("height", function(d) { return ky * d.dy ; });
+        .attr("width", function(d) { return kx * d.dx <= 1 ? kx * d.dx: kx * d.dx - 1; })
+        .attr("height", function(d) { return ky * d.dy <= 1 ? ky * d.dy: ky * d.dy - 1; });
 
     // Move text within this new rectangle
     // Move both the text containers and the tspans
