@@ -1,0 +1,499 @@
+{
+    "name":"Budget ASL Drops",
+    "children":[
+        {
+            "name":"Agriculture",
+            "children":[
+                {
+                    "name":"Department of Agriculture",
+                    "change":-232
+                },
+                {
+                    "name":"Grape and Wine Research and Development Corporation",
+                    "change":-11
+                },
+                {
+                    "name":"Rural Industries Research and Development Corporation",
+                    "change":-4
+                },
+                {
+                    "name":"Sugar Research and Development Corporation",
+                    "change": -2
+                },
+                {
+                    "name":"Wine Australia Corporation",
+                    "change": -45
+                }
+            ]
+        },
+        {
+            "name":"Attorney-General's",
+            "children":[
+                {
+                    "name":"Australia Business Arts Foundation Limited",
+                    "change": -13
+                },
+                {
+                    "name":"Australia Council",
+                    "change": -1
+                },
+                {
+                    "name":"Australian National Maritime Museum",
+                    "change": -5
+                },
+                {
+                    "name":"Administrative Appeals Tribunal",
+                    "change": -7
+                },
+                {
+                    "name":"Australian Crime Commission",
+                    "change": -21
+                },            
+                {
+                    "name":"Australian Federal Police",
+                    "change": -347
+                },            
+                {
+                    "name":"Australian Law Reform Commission(",
+                    "change": -1
+                },
+                {
+                    "name":"Australian Security Intelligence Organisation",
+                    "change": -30
+                },
+                {
+                    "name":"Australian Transaction Reports and Analysis Centre",
+                    "change": -9
+                },
+                {
+                    "name":"CrimTrac Agency",
+                    "change": -2
+                },
+                {
+                    "name":"Family Court and Federal Circuit Court",
+                    "change": -23
+                },
+                {
+                    "name":"Federal Court of Australia",
+                    "change": -12
+                },
+                {
+                    "name":"High Court of Australia",
+                    "change": -3
+                },
+                {
+                    "name":"National Archives of Australia",
+                    "change": -4
+                },
+                {
+                    "name":"National Film and Sound Archive",
+                    "change": -28
+                },
+                {
+                    "name":"National Gallery of Australia",
+                    "change": -12
+                },
+                {
+                    "name":"National Library of Australia",
+                    "change": -11
+                },
+                {
+                    "name":"National Museum of Australia",
+                    "change": -3
+                },
+                {
+                    "name":"Office of the Parliamentary Counsel",
+                    "change":-6
+                },
+                {
+                    "name":"Office of the Australian Information Commissioner",
+                    "change":-38
+                },
+                {
+                    "name":"Office of the Director of Public Prosecutions",
+                    "change":-40
+                },
+                {
+                    "name":"Old Parliament House",
+                    "change":-4
+                },
+                {
+                    "name":"Screen Australia",
+                    "change":-7
+                }
+            ]
+        },
+        
+        {
+            "name":"Communications",
+            "children":[
+                {
+                    "name":"Department of Communications",
+                    "change":-100
+                },
+                {
+                    "name":"Australian Broadcasting Corporation",
+                    "change":-8
+                },
+                {
+                    "name":"Australian Communications and Media Authority",
+                    "change":-44
+                },
+                {
+                    "name":"Telecommunications Universal Service Management Agency",
+                    "change":-15
+                }
+            ]
+        },
+        
+        {
+            "name":"Defence",
+            "children":[
+                {
+                    "name":"Deparment of Defence (Civilian)",
+                    "change":-385
+                },
+                {
+                    "name":"Defence Housing Australia",
+                    "change":-6
+                },
+                {
+                    "name":"Defence Material Organisation (DMO)",
+                    "change":-34
+                }
+            ]
+        },
+        
+        {
+            "name":"Departments of the Parliament",
+            "children":[
+                {
+                    "name":"Department of Parliamentary Services",
+                    "change":-3
+                },
+                {
+                    "name":"Department of the House of Representatives",
+                    "change":-1
+                }
+            ]
+        },
+        
+        {
+            "name":"Education",
+            "children":[
+                {
+                    "name":"Department of Education, Employment and Workplace Relations",
+                    "change":-779
+                },
+                {
+                    "name":"Australian Curriculum Assessment and Reporting Authority",
+                    "change":-21
+                },
+                {
+                    "name":"Tertiary Education Quality and Standards Agency",
+                    "change":-16
+                }
+                
+            ]
+        },
+        
+        {
+            "name":"Employment",
+            "children":[
+                {
+                    "name":"Comcare",
+                    "change":-1
+                },
+                {
+                    "name":"Office of the Fair Work Ombudsman",
+                    "change":-1
+                },
+                {
+                    "name":"Workplace Gender Equality Agency",
+                    "change":-1
+                }
+            ]
+        },
+        
+        {
+            "name":"Environment",
+            "children":[
+                {
+                    "name":"Department of the Environment",
+                    "change":-184
+                },
+                {
+                    "name":"Bureau of Meteorology",
+                    "change":-58
+                },
+                {
+                    "name":"Climate Change Authority",
+                    "change":-29
+                },
+                {
+                    "name":"Great Barrier Reef Marine Park Authority",
+                    "change":-8
+                },
+                {
+                    "name":"Murray-Darling Basin Authority",
+                    "change":-5
+                },
+                {
+                    "name":"National Water Commission",
+                    "change":-26
+                }
+            ]
+        },
+        
+        {
+            "name":"Finance",
+            "children":[
+                {
+                    "name":"Department of Finance",
+                    "change":-26
+                },
+                {
+                    "name":"Australian Electoral Commission",
+                    "change":-226
+                },
+                {
+                    "name":"ComSuper",
+                    "change":-42
+                }
+                
+            ]
+        },
+        
+        {
+            "name":"Foreign Affairs and Trade",
+            "children":[
+                {
+                    "name":"Department of Foreign Affairs and Trade",
+                    "change":-535
+                },
+                {
+                    "name":"Australian Trade Commission",
+                    "change":-17
+                }
+            ]
+        },
+        
+        {
+            "name":"Health",
+            "children":[
+                {
+                    "name":"Department of Health",
+                    "change":-326
+                },
+                {
+                    "name":"Australian Institute of Health and Welfare",
+                    "change":-12
+                },
+                {
+                    "name":"Australian National Preventive Health Agency",
+                    "change":-33
+                },
+                {
+                    "name":"Australian Radiation Protection and Nuclear Safety Agency",
+                    "change":-5
+                },
+                {
+                    "name":"Australian Sports Anti-Doping Authority",
+                    "change":-16
+                },
+                {
+                    "name":"Australian Sports Commission",
+                    "change":-137
+                },
+                {
+                    "name":"Food Standards Australia and New Zealand",
+                    "change":-8
+                },
+                {
+                    "name":"General Practice Education and Training Limited",
+                    "change":-32
+                },
+                {
+                    "name":"Health Workforce Australia",
+                    "change":-129
+                },
+                {
+                    "name":"National Blood Authority",
+                    "change":-1
+                },
+                {
+                    "name":"National Health and Medical Research Council",
+                    "change":-9
+                },
+                {
+                    "name":"Private Health Insurance Administration Council",
+                    "change":-1
+                }
+            ]
+        },
+        
+        {
+            "name":"Immigration and Border Protection",
+            "children":[
+                {
+                    "name":"Department of Immigration and Border Protection",
+                    "change":-400
+                },
+                {
+                    "name":"Australian Customs and Border Protection Service",
+                    "change":-80
+                }
+            ]
+        },
+        
+        {
+            "name":"Industry",
+            "children":[
+                {
+                    "name":"Department of Industry",
+                    "change":-732
+                },
+                {
+                    "name":"Australian Institute of Marine Science",
+                    "change":-2
+                },
+                {
+                    "name":"Australian Nuclear Science and Technology Organisation",
+                    "change":-63
+                },
+                {
+                    "name":"Commonwealth Scientific and Industrial Research Organisation",
+                    "change":-489
+                },
+                {
+                    "name":"Geoscience Australia",
+                    "change":-96
+                },
+                {
+                    "name":"IP Australia",
+                    "change":-18
+                }
+            ]
+        },        
+
+        {
+            "name":"Infrastructure and Regional Development",
+            "children":[
+                {
+                    "name":"Department of Regional Australia, Local Government, Arts and Sport",
+                    "change":-100
+                },
+                {
+                    "name":"Australian Transport Safety Bureau",
+                    "change":-6
+                },
+                {
+                    "name":"Civil Aviation Safety Authority",
+                    "change":-22
+                },
+                {
+                    "name":"National Transport Commission",
+                    "change":-3
+                }
+            ]
+        },        
+
+        {
+            "name":"Prime Minister and Cabinet",
+            "children":[
+                {
+                    "name":"Aboriginal Hostels Limited",
+                    "change":-10
+                },
+                {
+                    "name":"Anindilyakwa Land Council",
+                    "change":-17
+                },
+                {
+                    "name":"Australian Public Service Commission",
+                    "change":-22
+                },
+                {
+                    "name":"Central Land Council",
+                    "change":-3
+                },
+                {
+                    "name":"Office of National Assessments",
+                    "change":-5
+                },
+                {
+                    "name":"Office of the Commonwealth Ombudsman",
+                    "change":-8
+                },
+                {
+                    "name":"Office of the Inspector-General of Intelligence and Security",
+                    "change":-1
+                },
+                {
+                    "name":"Office of the Official Secretary to the Governor-General",
+                    "change":-2
+                }
+            ]
+        },  
+
+        {
+            "name":"Social Services",
+            "children":[
+                {
+                    "name":"Department of Social Services",
+                    "change":-162
+                }
+            ]
+        },        
+        
+        {
+            "name":"Treasury",
+            "children":[
+                {
+                    "name":"Department of the Treasury",
+                    "change":-15
+                },
+                {
+                    "name":"Australian Bureau of Statistics",
+                    "change":-100
+                },
+                {
+                    "name":"Australian Competition and Consumer Commission",
+                    "change":-55
+                },
+                {
+                    "name":"Australian Prudential Regulation Authority",
+                    "change":-10
+                },
+                {
+                    "name":"Australian Securities and Investments Commission",
+                    "change":-209
+                },
+                {
+                    "name":"Australian Taxation Office",
+                    "change":-2329
+                },
+                {
+                    "name":"Clean Energy Finance Corporation",
+                    "change":-28
+                },    
+                {
+                    "name":"National Competition Council",
+                    "change":-8
+                },
+                {
+                    "name":"Office of the Australian Accounting Standards Board",
+                    "change":-1
+                },                
+                {
+                    "name":"Productivity Commission",
+                    "change":-15
+                },                
+                {
+                    "name":"Royal Australian Mint",
+                    "change":-13
+                }                
+            ]
+        } 
+    ]
+}
