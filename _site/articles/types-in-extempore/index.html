@@ -1,0 +1,215 @@
+
+
+  <meta charset="utf-8">
+<title>Types in Extempore &#8211; mrmagooey.github.io</title>
+<meta name="description" content="">
+<meta name="keywords" content="extempore">
+
+
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Types in Extempore &#8211; mrmagooey.github.io">
+<meta property="og:description" content="">
+<meta property="og:url" content="/articles/types-in-extempore">
+<meta property="og:site_name" content="mrmagooey.github.io">
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="mrmagooey.github.io Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Type -->
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Crimson+Text:400,400italic,700,700italic" rel='stylesheet' type='text/css' />
+<link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="/assets/css/entypo.css" media="all">
+
+<!-- In order to use Calendas Plus, you must first purchase it. Then, create a font-face package using FontSquirrel.
+<link rel='stylesheet' href='/assets/cal.css' media='all' />
+-->
+
+
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/i.css">
+
+<!-- Fresh Squeezed jQuery -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- Load Modernizr -->
+<script src="/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="/favicon.ico">
+
+<div id="bump">
+  <body class="">
+    <header class="site-header darken">
+      <div class="wrap">
+        <hgroup>
+          <h1><a href="/">mrmagooey.github.io</a></h1>
+        </hgroup>
+        <a href="#nav" class="menu"><span class='icons'>☰</span></a>
+        <nav role="navigation">
+          <ul>
+            <li>
+              <a href="/" title="mrmagooey.github.io">Home</a>
+            </li>
+            
+            
+                <li><a href="https://github.com/mrmagooey/" target="_blank">Github</a></li>
+            
+
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+
+  <section class="article pad-top">
+
+    
+
+
+    <article class="wrap post">
+      <header class="post-header">
+        <hgroup>
+          <h1>Types in Extempore</h1>
+          <p class="date">Dec 03, 2015</p>
+          <p class="intro"></p>
+        </hgroup>
+      </header>
+
+      <p>Beyond the primitives (e.g. integers, floats), <a href="https://extemporelang.github.io">Extempore</a> also has aggregate types:</p>
+
+<ul>
+  <li>Tuples  <code>&lt;&gt;</code></li>
+  <li>Arrays  <code>||</code></li>
+  <li>Vectors  <code>//</code></li>
+</ul>
+
+<p>Tuples are great for grouping a bunch of dissimilar things, arrays are great for grouping a bunch of similar things, and vectors are like arrays but a bit less flexible. Tuples and arrays will constitute the bulk of composite types usage.</p>
+
+<p>In using composite types, you could do something like:</p>
+
+<div class="highlight"><pre><code class="language-scheme" data-lang="scheme"><span class="p">(</span><span class="nf">bind-func</span> <span class="nv">test</span>
+  <span class="p">(</span><span class="k">lambda </span><span class="p">()</span>
+    <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">my_composite:&lt;i32,|8,i32|,i8*&gt;*</span> <span class="p">(</span><span class="nf">zalloc</span><span class="p">)))</span>
+      <span class="nv">my_composite</span><span class="p">)))</span></code></pre></div>
+
+<p>Where the type is awkwardly defined in the <code>let</code> form of the function, making it difficult to continue using the type across other functions (where you would need to keep writing in the type signature in order to use it).</p>
+
+<p>To make types easier to re-use across different parts of your code, the <code>bind-type</code> expression allows you to define your type in one location.</p>
+
+<div class="highlight"><pre><code class="language-scheme" data-lang="scheme"><span class="c1">;;         the name     the definition</span>
+<span class="p">(</span><span class="nf">bind-type</span> <span class="nv">my_composite</span> <span class="nv">&lt;i32,|2,i32|,i8*&gt;</span><span class="p">)</span></code></pre></div>
+
+<p>We now have a <code>my_composite</code> type, consisting of a tuple with three elements; a 32 bit  integer, an array that has space for 2, 32 bit integers, and a pointer to an i8.</p>
+
+<p>Let’s say that our <code>my_composite</code> type is used for accounting at the hypothetical Acme Company. We will say that the first item stores the number of widgets we have ever sold, the second is a list of the red and blue widgets sold, and the third stores the name of our company “Acme Co.”.</p>
+
+<p>The first thing we want to do is to be able to print the contents of our <code>my_composite</code> datastructure, so that we can debug things and remind ourselves what the company name is. In order to conveniently print <code>my_composite</code> we need to implement a print function.</p>
+
+<div class="highlight"><pre><code class="language-scheme" data-lang="scheme"><span class="p">(</span><span class="nf">bind-func</span> <span class="nv">print_my_composite:</span><span class="p">[</span><span class="nv">void,my_composite*</span><span class="p">]</span><span class="nv">*</span>
+  <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">my_comp</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">printf</span> <span class="s">&quot;widgets sold:%d, red widgets:%d, blue widgets:%d, company name:%s&quot;</span> 
+            <span class="p">(</span><span class="nf">tref</span> <span class="nv">my_comp</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="p">(</span><span class="nf">aref</span> <span class="p">(</span><span class="nf">tref-ptr</span> <span class="nv">my_comp</span> <span class="mi">1</span><span class="p">)</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="p">(</span><span class="nf">aref</span> <span class="p">(</span><span class="nf">tref-ptr</span> <span class="nv">my_comp</span> <span class="mi">1</span><span class="p">)</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="p">(</span><span class="nf">tref</span> <span class="nv">my_comp</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="nv">void</span><span class="p">))</span>
+
+<span class="p">(</span><span class="nf">bind-poly</span> <span class="nv">print</span> <span class="nv">print_my_composite</span><span class="p">)</span></code></pre></div>
+
+<p>This code has a few things going on.</p>
+
+<ul>
+  <li>We declare the functions type signature after the function name <code>:[void,my_composite*]*</code>.</li>
+  <li>We call the standard c function <code>printf</code>.</li>
+  <li>We pass printf the various items within our <code>my_composite</code> data type.</li>
+  <li>Finally we call <code>bind-poly</code> to overload the print function with our custom print function.</li>
+</ul>
+
+<p>If we now create a version of <code>my_composite</code>, we should be able to print it.</p>
+
+<div class="highlight"><pre><code class="language-scheme" data-lang="scheme"><span class="p">(</span><span class="nf">bind-func</span> <span class="nv">test-print</span>
+  <span class="p">(</span><span class="k">lambda </span><span class="p">()</span>
+    <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">mc:my_composite*</span> <span class="p">(</span><span class="nf">zalloc</span><span class="p">)))</span>
+      <span class="p">(</span><span class="nf">tset!</span> <span class="nv">mc</span> <span class="mi">0</span> <span class="mi">1001</span><span class="p">)</span>
+      <span class="p">(</span><span class="nf">aset!</span> <span class="p">(</span><span class="nf">tref-ptr</span> <span class="nv">mc</span> <span class="mi">1</span><span class="p">)</span> <span class="mi">0</span> <span class="mi">501</span><span class="p">)</span>
+      <span class="p">(</span><span class="nf">aset!</span> <span class="p">(</span><span class="nf">tref-ptr</span> <span class="nv">mc</span> <span class="mi">1</span><span class="p">)</span> <span class="mi">1</span> <span class="mi">500</span><span class="p">)</span>
+      <span class="p">(</span><span class="nf">tset!</span> <span class="nv">mc</span> <span class="mi">2</span> <span class="s">&quot;Acme Co.&quot;</span><span class="p">)</span>
+      <span class="p">(</span><span class="nf">println</span> <span class="nv">mc</span><span class="p">)</span>
+      <span class="nv">void</span>
+      <span class="p">)))</span></code></pre></div>
+
+<p>Note that in both functions we are passing a pointer to the array functions <code>aref</code> and <code>aset!</code>.</p>
+
+<p>Again this function does a few things:</p>
+
+<ul>
+  <li>We are reserving some memory the same size as our <code>my-composite</code> type using <code>zalloc</code>, and setting the symbol <code>mc</code> to point to that memory.</li>
+  <li>We are sequentially are <code>set!</code>ing some values into our <code>my-composite</code> data structure.</li>
+  <li>We are printing the mc symbol using <code>println</code>, which thanks to the <code>bind-poly</code> call earlier knows how to print our <code>my_composite</code> type (<code>println</code> is just <code>print</code> with a newline!).</li>
+</ul>
+
+<p>If we now run <code>test-print</code> we can see our type being printed by Extempore like it ain’t no thing:</p>
+
+<div class="highlight"><pre><code class="language-scheme" data-lang="scheme"><span class="p">(</span><span class="nf">test-print</span><span class="p">)</span>
+<span class="c1">; widgets sold:1001, red widgets:501, blue widgets:500, company name:Acme Co.</span></code></pre></div>
+
+<p>Hopefully this gives some insight into Extempore’s type system, writing it certainly did.</p>
+
+      
+      
+      
+      
+
+    </article>
+  </section>
+</div>
+
+<div class="push"></div>
+<footer>
+  <aside class="wrap">
+    <ol class="prev-posts">
+      <p class="list-title">Recent Posts</p>
+       <!-- for1 -->
+      <li>
+        <span class="recent-title"><a href="/articles/types-in-extempore" title="Types in Extempore">Types in Extempore </a></span>
+        <span class="date">Dec 03, 2015</span>
+      </li>
+      
+    </ol>
+
+    <div class="social">
+      <ul>
+        
+        
+        
+
+
+        
+      </ul>
+    </div>
+  </aside>
+  <small>&copy; 2015 mrmagooey. Powered by <a href="http://jekyllrb.com">Jekyll</a> using the <a href="http://jekyll.gtat.me/about">Balzac</a> theme.</small>
+</footer>
+
+<!-- If they're out, get some from the cellar -->
+<script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+  <script src="/assets/js/retina.min.js"></script>
+
+  <!-- Custom JS -->
+  <script src="/assets/js/scripts.js"></script>
+
+
+</body>
+</html>
+
