@@ -16,11 +16,11 @@ If you use ubuntu as the base for your containers, every container you have buil
 
 * */usr/share/man* man pages you will never read. 5.8MB
 * */usr/share/docs* docs you you will never read. 3.6MB
-* */usr/locale/* locales that you will _probably_ never need. 8.9MB
+* */usr/locale/* locales that you will probably never need. 8.9MB
 
 Totalling 18.3MB of information that your container can probably do without. Given that the whole image is 119MB (ubuntu:16.04), removing these three directories is ~15% space saving on that image, without losing much of value. The locale removal is probably the diciest change, but I haven't had any issues so far.
 
-To have these changes made to your container, add the following somewhere (e.g. a RUN command):
+To have these changes made to your container, add the following somewhere (e.g. a RUN command or shell script):
 
 {% highlight bash %}
 
@@ -50,9 +50,9 @@ rm -rf /usr/share/locale
 
 You will see apt packages complaining about not having things in /usr/share but they seem to install just fine.
 
-A bunch of these are taken from https://wiki.ubuntu.com/ReducingDiskFootprint.
+A bunch of these are taken from [the ubuntu wiki](https://wiki.ubuntu.com/ReducingDiskFootprint).
 
-### Apt-get install
+### Apt-get
 
 Many packages have "recommended" dependencies, without which they work fine, but don't have as much functionality. Telling apt not to install these recommended dependencies ensures that your container isn't filled with well meaning but purposeless packages.
 
@@ -76,7 +76,7 @@ Building your own container base from scratch is now much easier than what it on
 
 #### Init Process
 
-Docker now has an init system that it will inject into your container if you ask it nicely (add the `--init` flag to `docker run`), taking care of the Zombie Process Problem™. You can also build your container with this init process baked in https://github.com/krallin/tini, so that your end user can never forget to run init. This will ensure correct handling of signals and reaping zombies, whilst only weighing in at 20kB. However, tini is not responsible for starting/restarting processes for which you need a service supervision.
+Docker now has an init system [tini](https://github.com/krallin/tini) that it will inject into your container if you ask it nicely (add the `--init` flag to `docker run`), taking care of the Zombie Process Problem™. You can also build your container with this init process baked in , so that your end user can never forget to run init. This will ensure correct handling of signals and reaping zombies, whilst only weighing in at 20kB. However, tini is not responsible for starting/restarting processes for which you need a service supervision.
 
 #### Service supervision
 
@@ -90,5 +90,5 @@ However, if your container is only expected to ever have a single running proces
 
 1. Don't build your application in the same container that will eventually run it. Build separately, then copy the binary to the container. For compiled applications, this will ensure that your final container doesn't have build artifacts, compilers, libraries that it doesn't necessarily need.
 1. If you can avoid using languages that require an interpreter/vm/runtime to execute then you can save a bunch of space in your container. Just installing python generally adds 30MB to a system, and that is before any user code and dependencies are added.
-1. 
+1. If you have a compiled application that you bundle with a container image, run [Ultimate Packer for eXecutables (UPX)] (https://github.com/upx/upx) across the binary to compress it before adding it to the image.
 
