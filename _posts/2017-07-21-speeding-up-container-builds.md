@@ -8,7 +8,7 @@ tags: [docker, containers]
 
 #### The Problem
 
-I have noticed that apt calls are very slow in my containers, and so a minor change in an `apt-get` call can result in a container build that takes (metaphorically) forever. Docker already comes with a layer system where each command in a Dockerfile is turned into an immutable 'layer', which can then be reused in later builds to speed up the build process. However, I find that I'm fairly regularly changing Dockerfiles in a manner that invalidates the layer cache, and so I'm always having to wait for slow `apt` calls.
+I have noticed that apt calls are very slow in my containers, and so a minor change in an `apt-get` call can result in a container build that takes (metaphorically) forever. Docker already comes with a layer system where each command in a Dockerfile is turned into an immutable 'layer', which can then be reused in later builds to speed up the build process. However, I find that I'm fairly regularly changing Dockerfiles in a manner that invalidates the layer cache, and so I'm always having to wait for slow apt calls.
 
 #### The Solution
 
