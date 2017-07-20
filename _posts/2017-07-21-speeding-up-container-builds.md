@@ -56,6 +56,6 @@ Then for every container build that we want a http cache for, tell docker to bui
 1. The cache is very aggressive, anything it has cached it will hold onto forever.
 1. There is the potential for weird things to happen, if the two previous items conspire to give your container a http response that it wasn't expecting (I have once seen yum get confused).
 
-I currently use this cache system for development/testing, but for production builds I build normally without cache. 
+I currently use this cache system for development/testing, but for production builds I build without cache.
 
 As far as I can tell, all other package management systems (smartly) run over https as they do not have the pre-shared key that apt has. This means that this solution will not improve things like `go get`, `npm`, or `pip`, as these all run over https. If you can force these systems to run over http then you will probably see some improvement in build times, at the cost of security. An example for [forcing npm to run over http](https://github.com/mrmagooey/aggressive-squid-cache/blob/master/benchmarks/npm-install-benchmark) is in the benchmarks folder for this container.
