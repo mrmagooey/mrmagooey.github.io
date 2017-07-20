@@ -1,7 +1,7 @@
 ---
 layout: post-no-feature
 title: "Types in Extempore"
-description: ""
+description: "A brief overview of types in Extempore"
 category: articles
 tags: [extempore]
 ---
