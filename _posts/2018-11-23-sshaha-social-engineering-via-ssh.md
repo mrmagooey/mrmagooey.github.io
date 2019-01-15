@@ -68,5 +68,7 @@ There are more deceptions available to run in this kind of attack:
 * Pretend the user's keyfile is locked; or
 * Rather than rejecting the users password, appear to accept the connection and pretend to be an unresponsive remote connection.
 
-Another good SSH example for this kind of thing is [cowrie](https://github.com/cowrie/cowrie) for a honeypot SSH server.
+A newer example of this kind of deception is part of the [new SCP vulnerability (CVE-2019-6110)](https://sintonen.fi/advisories/scp-client-multiple-vulnerabilities.txt), where stderr is manipulated by the malicious SCP server to hide files being transferred.
+
+[Cowrie](https://github.com/cowrie/cowrie) is also a good reference for an SSH server being deceptive.
 
