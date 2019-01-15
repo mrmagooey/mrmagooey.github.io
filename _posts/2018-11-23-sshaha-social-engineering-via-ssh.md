@@ -24,7 +24,7 @@ The below terminal animation is what the malicious server will be recording whil
 
 <img src="{{site.baseurl}}/images/sshaha/sshaha-vision.svg">
 
-## Discussion
+## POC Constraints
 
 This attack will push an unwary user to potentially give up at least two passwords, if not more in trying to work out why none of their passwords are being accepted. The first deception is pretending that no connection was ever made, and that the SSH server is still demanding a password for authentication. Once all connection attempts have failed, SSHaha pretends that the connection has been dropped and kicks the user back to what it guesses will most accurately emulate the user's shell environment.
 
@@ -32,9 +32,9 @@ I have cheated here because I only need to emulate my own terminal environment, 
 
     username@ubuntu-thinkpad-480 /tmp/ $ 
 
-This local environment then pretends there is some issue with the permissions for the user, forcing them to eventually try to escalate permissions using sudo. Once SSHaha has allowed a few sudo attempts it becomes unresponsive. Finally for the user, that block of grey text is SSHaha setting the terminal colors to be black font on black background, hiding the final legitimate ssh disconnection text.
+## Discussion
 
-In summary, this attack exploits a couple of key assumptions made by the user:
+This attack exploits a couple of key assumptions made by the user:
 
 1. That SSH can only be used for starting remote shell sessions (e.g. bash, zsh);
 1. That an SSH connection can only be completed with the correct authentication secret, either a password or identity key file;
@@ -53,10 +53,10 @@ Finally, through usage of the ANSI terminal control codes, a remote server can c
 
 The impact is that this attack will extract secrets out of an unwary user. However, getting the attack to happen requires a significant number of pre-conditions:
 
-* Getting the SSHaha server to a server that the user will connect to;
+* Getting the SSHaha program running (on port 22) on a server that the user will connect to;
 * The user ignoring the SSH client complaining that it can't verify the identity of SSHaha;
-* If the user normally uses a keyfile, then the server demanding one will raise suspicion; and
-* The odd behaviour of their local shell, including: refusing to run any command, potentially being in the wrong directory, odd sudo behaviour,and  wrong prompt.
+* If the user normally uses a keyfile, then the server demanding a password will raise suspicion; and
+* The odd behaviour of their local shell, including: refusing to run any command, potentially being in the wrong directory, odd sudo behaviour, and wrong prompt.
 
 A wary user is unlikely to be taken in by this attack, and once the attack is complete is likely to realise that something strange has occurred. 
 
