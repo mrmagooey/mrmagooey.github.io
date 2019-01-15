@@ -8,9 +8,7 @@ tags: [cybersecurity, social engineering]
 
 ## Introduction
 
-Social engineering is "the use of deception to manipulate individuals into divulging confidential or personal information that may be used for fraudulent purposes". SSH is the acronym of Secure Shell, which is the dominant method of securely connecting to remote computers via the command line. SSH quite rightfully has an excellent reputation due to its many years of safe usage, and its relatively low number of security flaws found.
-
-SSHaha is a malicious SSH server that attempts to deceive a connecting user in order to gain that user's secrets. It has one strategy for getting the user's secrets; tricking the user into believing that they are still providing commands to their local machine whilst in fact being connected to the remote machine.
+[SSHaha is a malicious proof-of-concept SSH server](https://github.com/mrmagooey/sshaha) that attempts to deceive a connecting user in order to gain that user's secrets. It has one strategy for getting the user's secrets; tricking the user into believing that they are still providing commands to their local machine whilst in fact being connected to the remote machine.
 
 SSHaha has two main methods for tricking the user: pretending the SSH connection was never successfully made, and pretending the connection has ended. The first method is the simplest; the server merely starts sending familiar authentication prompts to the user and hopes the user will not recognise a connection has already been made. The second method is more complicated, and requires some emulation of the user's home shell environment. Chained together, this attack is potentially a good method of pulling several secrets out of the user.
 
