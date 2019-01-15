@@ -14,7 +14,7 @@ SSHaha has two main methods for tricking the user: pretending the SSH connection
 
 ## SSHaha in Action
 
-When connecting to an SSHaha instance, what the victim sees is an unsuccessful connection attempt combined with their local machine being weird:
+When connecting to an SSHaha instance, what the victim sees is an unsuccessful connection attempt combined with their local machine being weird (nb sometimes the below svg animations seem to get 'stuck' and reloading the page is the solution):
 
 <img src="{{site.baseurl}}/images/sshaha/victim-vision.svg">
 
